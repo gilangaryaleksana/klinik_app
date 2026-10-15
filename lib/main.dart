@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './ui/pasien_page.dart';
+import './ui/poli_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Pasien APP',
+      title: 'Poli APP',
       debugShowCheckedModeBanner: false,
-      home: PasienPage(),
+      home: PoliPage(),
     );
   }
 }
