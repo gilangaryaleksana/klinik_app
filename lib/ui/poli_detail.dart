@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'poli_page.dart';
+import 'poli_update_form.dart';
 import '../model/poli.dart';
 
 class PoliDetail extends StatefulWidget {
@@ -14,9 +16,7 @@ class _PoliDetailState extends State<PoliDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Detail Poli"),
-      ),
+      appBar: AppBar(title: const Text("Detail Poli")),
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -27,21 +27,51 @@ class _PoliDetailState extends State<PoliDetail> {
           const SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: const Text("Ubah"),
-              ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-                child: const Text("Hapus"),
-              ),
-            ],
+            children: [_tombolUbah(), _tombolHapus()],
           ),
         ],
       ),
+    );
+  }
+
+  Widget _tombolUbah() {
+    return ElevatedButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => PoliUpdateForm(poli: widget.poli),
+          ),
+        );
+      },
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+      child: const Text("Ubah"),
+    );
+  }
+
+  Widget _tombolHapus() {
+    return ElevatedButton(
+      onPressed: () {
+        AlertDialog alertDialog = AlertDialog(
+          content: const Text("Yakin ingin menghapus data ini?"),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PoliPage()),
+                );
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+              child: const Text("YA"),
+            ),
+          ],
+        );
+        showDialog(context: context, builder: (context) => alertDialog);
+      },
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+      child: const Text("Hapus"),
     );
   }
 }
