@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../service/login_service.dart';
+import 'beranda.dart';
+
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -90,7 +93,9 @@ class _LoginState extends State<Login> {
                       Navigator.pop(context);
                     },
                     child: const Text("OK"),
-                    style: ElevatedButton.styleFrom(primary: Colors.green),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
                   ),
                 ],
               );
