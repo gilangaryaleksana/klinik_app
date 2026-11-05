@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import './ui/poli_page.dart';
+import '/helpers/user_info.dart';
+import 'ui/beranda.dart';
+import 'ui/login.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var token = await UserInfo().getToken();
+  print(token);
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Poli APP',
-      debugShowCheckedModeBanner: false,
-      home: PoliPage(),
-    );
-  }
+  runApp(MaterialApp(
+    title: 'Klinik App',
+    debugShowCheckedModeBanner: false,
+    home: token == null ? Login() : Beranda(),
+  ));
 }
